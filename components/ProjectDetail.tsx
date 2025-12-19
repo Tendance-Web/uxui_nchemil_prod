@@ -36,7 +36,7 @@ export const ProjectDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-36 pb-32 px-6">
+    <div className="min-h-screen pt-36 pb-32 px-6">
       <div className="max-w-6xl mx-auto space-y-8 md:space-y-24">
         
         {/* Navigation & Header */}
