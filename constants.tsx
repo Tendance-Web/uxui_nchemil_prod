@@ -318,7 +318,7 @@ export const PROJECTS_DATA: Project[] = [
   // NoCode Project
   {
     id: "nocode",
-    title: "NoCode & Automation",
+    title: "NoCode & IA",
     client: "Projets Personnels",
     category: "Product Building",
     isUpcoming: true,
