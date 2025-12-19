@@ -26,8 +26,8 @@ export const Hero: React.FC = () => {
           {/* Main Title - Massive & Uppercase */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tighter uppercase animate-slide-up-fade break-words">
             <span className="block">UX UI</span>
-            <span className="block text-zinc-500">Designer</span>
-            <span className="block text-zinc-100">NoCode & AI</span>
+            <span className="block">Designer</span>
+            <span className="block text-zinc-500">NoCode & AI</span>
           </h1>
           
           <p className="text-lg md:text-xl text-text-secondary max-w-xl font-light leading-relaxed animate-slide-up-delay">
