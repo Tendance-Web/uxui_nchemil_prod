@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, UserCog, Lightbulb, Target, Flag, ArrowUpRight } from 'lucide-react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { PROJECTS_DATA } from '../constants';
 import { FadeIn } from './FadeIn';
 import { useLenis } from './SmoothScroll';
