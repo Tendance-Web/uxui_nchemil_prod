@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -7,6 +7,67 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // État pour la visibilité de la navbar au scroll
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  
+  // Ref pour ignorer le scroll lors d'une navigation programmatique
+  const isAutoScrolling = useRef(false);
+
+  // Réinitialiser la visibilité lors d'un changement de route
+  useEffect(() => {
+    setIsVisible(true);
+    isAutoScrolling.current = true;
+    const timer = setTimeout(() => {
+      isAutoScrolling.current = false;
+    }, 2500); // Délai augmenté pour couvrir l'animation de scroll sur mobile
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  // Écouter les demandes externes pour afficher la navbar (ex: depuis le Hero)
+  useEffect(() => {
+    const handleForceVisible = () => {
+      setIsVisible(true);
+      isAutoScrolling.current = true;
+      setTimeout(() => {
+        isAutoScrolling.current = false;
+      }, 2500);
+    };
+
+    window.addEventListener('force-navbar-visible', handleForceVisible);
+    return () => window.removeEventListener('force-navbar-visible', handleForceVisible);
+  }, []);
+
+  // Gestion du scroll pour cacher/montrer la navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Si un scroll automatique est en cours, on ne cache pas la navbar
+      // On met juste à jour la position de référence
+      if (isAutoScrolling.current) {
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+      
+      // Si on est tout en haut, on affiche toujours
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        // Si on descend et qu'on a dépassé 50px, on cache
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        // Si on remonte, on affiche
+        setIsVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -21,6 +82,14 @@ export const Navbar: React.FC = () => {
 
   const handleNavigation = (sectionId: string) => {
     setIsMobileMenuOpen(false);
+    
+    // Forcer l'affichage et bloquer le masquage temporairement
+    setIsVisible(true);
+    isAutoScrolling.current = true;
+    setTimeout(() => {
+      isAutoScrolling.current = false;
+    }, 2500); // Délai augmenté pour mobile
+
     if (isHome) {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -42,7 +111,11 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 h-20 border-b border-white/5 bg-background/80 backdrop-blur-md">
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 h-20 border-b border-white/5 bg-background/80 backdrop-blur-md transition-transform duration-300 ease-in-out ${
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <div className="max-w-[1440px] mx-auto px-6 h-full flex items-center justify-between">
           
           {/* Logo */}

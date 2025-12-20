@@ -3,10 +3,14 @@ import { ArrowUpRight, User } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const scrollToProjects = () => {
+    // Informe la navbar qu'un scroll programmatique va avoir lieu
+    window.dispatchEvent(new Event('force-navbar-visible'));
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
   
   const scrollToAbout = () => {
+    // Informe la navbar qu'un scroll programmatique va avoir lieu
+    window.dispatchEvent(new Event('force-navbar-visible'));
     document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
   };
 

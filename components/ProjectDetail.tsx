@@ -43,10 +43,10 @@ export const ProjectDetail: React.FC = () => {
         <FadeIn className="space-y-12">
           <button 
             onClick={() => navigate('/', { state: { scrollTo: 'projects' } })}
-            className="group px-4 py-2 bg-transparent border border-zinc-700 text-zinc-300 text-sm font-mono font-bold uppercase tracking-tight rounded hover:border-zinc-500 hover:text-white hover:bg-zinc-800/50 transition-all flex items-center gap-2 w-fit"
+            className="group px-4 py-2 bg-transparent border border-zinc-700 text-zinc-300 text-sm font-mono font-bold uppercase tracking-tight rounded hover:border-zinc-500 hover:text-white hover:bg-zinc-800/50 transition-all flex items-center gap-2 w-fit leading-none"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Retour aux projets</span>
+            <span className="mt-[2px]">Retour aux projets</span>
           </button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
