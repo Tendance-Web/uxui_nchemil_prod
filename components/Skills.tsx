@@ -38,7 +38,7 @@ export const Skills: React.FC = () => {
           {/* Soft Skills */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-                 <div className="p-2 rounded-lg bg-pink-500/10 text-pink-500">
+                 <div className="p-2 rounded-lg bg-red-500/10 text-red-500">
                     <Heart size={24} />
                 </div>
                 <h3 className="text-xl font-bold text-white">Soft Skills</h3>
@@ -48,7 +48,7 @@ export const Skills: React.FC = () => {
               {SOFT_SKILLS.map((skill) => (
                 <div 
                   key={skill}
-                  className="px-4 py-2 bg-background border border-border rounded-lg text-sm text-zinc-300 hover:border-pink-500/50 hover:text-white transition-all cursor-default"
+                  className="px-4 py-2 bg-background border border-border rounded-lg text-sm text-zinc-300 hover:border-red-500/50 hover:text-white transition-all cursor-default"
                 >
                   {skill}
                 </div>
