@@ -5,75 +5,6 @@ import { Download } from 'lucide-react';
 
 export const Experience: React.FC = () => {
 
-  // Fonction pour générer un son de Sonar via Web Audio API
-  // Intégration d'un écho (Delay), d'un filtre (Lowpass) et d'une boucle de feedback
-  const playSonarSound = () => {
-    try {
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContext) return;
-
-      const ctx = new AudioContext();
-      
-      // 1. Création des nœuds
-      const osc = ctx.createOscillator();
-      const mainGain = ctx.createGain(); // Contrôle le volume principal (le "Ping")
-      
-      const delayNode = ctx.createDelay();
-      const feedbackGain = ctx.createGain();
-      const filterNode = ctx.createBiquadFilter();
-
-      // 2. Configuration
-      
-      // Oscillateur
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(400, ctx.currentTime); // Fréquence abaissée à 400Hz (plus grave)
-
-      // Delay (L'écho)
-      delayNode.delayTime.value = 0.4; // 400ms entre les répétitions
-      
-      // Feedback (La répétition)
-      feedbackGain.gain.value = 0.15; // Réduit à 15% (moins résonant)
-      
-      // Filtre (L'effet "sous l'eau")
-      filterNode.type = 'lowpass';
-      filterNode.frequency.value = 800; // Filtre plus fermé pour étouffer l'écho
-
-      // 3. Câblage (Routing)
-      
-      // Chaîne directe (Dry) : Osc -> MainGain -> Sortie
-      osc.connect(mainGain);
-      mainGain.connect(ctx.destination);
-
-      // Chaîne d'effet (Wet) avec boucle :
-      // MainGain -> Delay -> Filter -> Feedback -> Delay (Boucle)
-      mainGain.connect(delayNode);
-      delayNode.connect(filterNode);
-      filterNode.connect(feedbackGain);
-      feedbackGain.connect(delayNode); // Bouclage
-
-      // Sortie de l'effet vers les haut-parleurs
-      filterNode.connect(ctx.destination);
-
-      // 4. Enveloppe de volume (Le "Ping")
-      const now = ctx.currentTime;
-      mainGain.gain.setValueAtTime(0, now);
-      
-      // Attaque rapide mais douce
-      mainGain.gain.linearRampToValueAtTime(0.2, now + 0.05); 
-      
-      // Decay exponentiel rapide pour le son initial
-      mainGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-
-      // 5. Lecture
-      osc.start(now);
-      // On laisse tourner l'oscillateur pour que la boucle de delay puisse vivre sa vie
-      osc.stop(now + 2.5); 
-
-    } catch (error) {
-      console.error("AudioContext non supporté par ce navigateur");
-    }
-  };
-
   return (
     <section id="experience" className="py-24 px-6 max-w-[1440px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -106,7 +37,6 @@ export const Experience: React.FC = () => {
              <div 
              key={exp.id} 
              className="relative md:pl-12 group"
-             onMouseEnter={playSonarSound}
              >
              
                {/* Sonar Dot Animation */}
