@@ -22,6 +22,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenProject }) => {
           const isUpcoming = project.isUpcoming;
           const hasDetails = !!project.fullDetails;
           const canOpen = hasDetails && !isUpcoming;
+          const isPortailRH = project.id === 'portail-rh';
           
           return (
             <div 
@@ -55,9 +56,10 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenProject }) => {
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className={`w-full h-full object-cover opacity-60 transition-all duration-700 ${
-                    isUpcoming ? 'grayscale opacity-30 blur-[2px]' : 'group-hover:opacity-100 group-hover:scale-105'
-                  }`}
+                  className={`h-full object-cover transition-all duration-700 
+                    ${isPortailRH ? 'w-[105%] max-w-none object-left-top opacity-80' : 'w-full opacity-60'}
+                    ${isUpcoming ? 'grayscale opacity-30 blur-[2px]' : 'group-hover:opacity-100 group-hover:scale-105'}
+                  `}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
               </div>
@@ -66,26 +68,26 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ onOpenProject }) => {
               <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
                 <div className={`transform transition-transform duration-500 ${!isUpcoming ? 'group-hover:-translate-y-2' : ''}`}>
                   <div className="flex justify-between items-end mb-4">
-                    <span className="tech-label text-primary bg-primary/10 px-2 py-1 rounded">
+                    <span className="tech-label text-white bg-primary/70  leading-none backdrop-blur-sm px-3 py-2 rounded shadow-sm inline-flex items-center justify-center">
                       {project.client}
                     </span>
                     {canOpen && (
-                      <div className="w-10 h-10 bg-primary text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 rounded-full">
+                      <div className="w-10 h-10 bg-primary text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 rounded-full shadow-lg">
                         <ArrowUpRight size={20} />
                       </div>
                     )}
                   </div>
                   
-                  <h3 className="text-3xl font-bold text-white mb-2 uppercase tracking-tight">
+                  <h3 className="text-3xl font-bold text-white mb-2 uppercase tracking-tight drop-shadow-lg">
                     {project.title}
                   </h3>
-                  <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed">
+                  <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed drop-shadow-md">
                     {project.description}
                   </p>
                   
                   <div className="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {project.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className="text-xs font-mono uppercase tracking-tight px-2 py-1 border border-zinc-700 text-zinc-400 rounded">
+                      <span key={tag} className="text-xs font-mono uppercase tracking-tight px-2 py-1 bg-zinc-950/60 backdrop-blur-md border border-zinc-700 text-zinc-300 rounded shadow-sm">
                         {tag}
                       </span>
                     ))}

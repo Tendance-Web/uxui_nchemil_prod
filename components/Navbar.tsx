@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 h-20 border-b border-white/5 bg-background/80 backdrop-blur-md transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 h-20 border-b border-border bg-surface/60  transition-transform duration-300 ease-in-out backdrop-blur-md ${
           isVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -154,7 +154,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-background z-[100] flex flex-col md:hidden">
+        <div className="fixed inset-0 bg-surface z-[100] flex flex-col md:hidden">
            <div className="flex items-center justify-between px-6 h-20 border-b border-white/5">
               <button 
                 onClick={() => {

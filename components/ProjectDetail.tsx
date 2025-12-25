@@ -51,11 +51,11 @@ export const ProjectDetail: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
              <div className="space-y-6">
-               <div className="flex items-center gap-3">
+               <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
                  <span className="tech-label text-primary">
                    // {project.client}
                  </span>
-                 <span className="w-px h-4 bg-zinc-700"></span>
+                 <span className="hidden sm:block w-px h-4 bg-zinc-700"></span>
                  <span className="text-sm font-mono uppercase text-zinc-200">
                    {project.category}
                  </span>
@@ -65,7 +65,7 @@ export const ProjectDetail: React.FC = () => {
                </h1>
              </div>
              
-             <div className="flex flex-wrap gap-2 lg:justify-end">
+             <div className="flex flex-wrap gap-2 justify-start lg:justify-end">
                 {project.tags.map((tag) => (
                   <span key={tag} className="text-xs font-mono uppercase tracking-tight px-2 py-1 border border-zinc-700 text-zinc-200 rounded">
                     {tag}

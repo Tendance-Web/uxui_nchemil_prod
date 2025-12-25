@@ -17,17 +17,17 @@
     <script>
 
  tailwind.config = {
-darkMode: 'class',
-theme: {
-extend: {
-colors: {
-background: '#272727',
-surface: '#0F0F11',
-border: '#27272A',
-primary: '#27A06C',
-'primary-hover': '#1F8A5C',
-'text-main': '#EDEDED',
-'text-secondary': '#D4D4D8', /* Gris plus clair (Zinc-300) pour meilleure lisibilité /
+    darkMode: 'class',
+    theme: {
+        extend: {
+            colors: {
+                background: '#272727',
+                surface: '#0F0F11',
+                border: '#27272A',
+                primary: '#27A06C',
+                'primary-hover': '#1F8A5C',
+                'text-main': '#EDEDED',
+                'text-secondary': '#D4D4D8', /* Gris plus clair (Zinc-300) pour meilleure lisibilité /
 'text-muted': '#A1A1AA', / Gris moyen (Zinc-400) au lieu de Zinc-600 /
 },
 fontFamily: {
@@ -59,40 +59,40 @@ DEFAULT: '5px', / Standardisation stricte à 5px /
 '2xl': '5px',
 '3xl': '5px',
 'full': '9999px', / On garde full pour les cercles parfaits */
-},
-letterSpacing: {
-tighter: '-0.04em',
-tight: '-0.02em',
-normal: '0',
-wide: '0.04em',
-wider: '0.08em',
-widest: '0.15em',
-},
-animation: {
-'fade-in': 'fadeIn 0.6s ease-out forwards',
-'slide-up-fade': 'slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-'slide-up-delay': 'slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards',
-'ripple': 'ripple 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
-},
-keyframes: {
-fadeIn: {
-'0%': { opacity: '0' },
-'100%': { opacity: '1' },
-},
-slideUpFade: {
-'0%': { transform: 'translateY(40px)', opacity: '0' },
-'100%': { transform: 'translateY(0)', opacity: '1' },
-},
-ripple: {
-  '0%': { transform: 'scale(1)', opacity: '0.8' },
-  '100%': { transform: 'scale(4)', opacity: '0' },
-}
+            },
+            letterSpacing: {
+                tighter: '-0.04em',
+                tight: '-0.02em',
+                normal: '0',
+                wide: '0.04em',
+                wider: '0.08em',
+                widest: '0.15em',
+            },
+            animation: {
+                'fade-in': 'fadeIn 0.6s ease-out forwards',
+                'slide-up-fade': 'slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                'slide-up-delay': 'slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards',
+                'ripple': 'ripple 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
+            },
+            keyframes: {
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                slideUpFade: {
+                    '0%': { transform: 'translateY(40px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                ripple: {
+                    '0%': { transform: 'scale(1)', opacity: '0.8' },
+                    '100%': { transform: 'scale(4)', opacity: '0' },
+                }
 
 
 
-}
-},
-},
+            }
+        },
+    },
 }
 
     </script>
